@@ -246,9 +246,9 @@ func ApplyAlpha(c color.RGBA, alpha uint8) color.RGBA {
 // two colors together.
 func Blend(bottom, top color.RGBA) color.RGBA {
 	return color.RGBA{
-		R: uint8((uint32(bottom.R)*uint32(255-top.A))/255 + uint32(top.R)),
-		G: uint8((uint32(bottom.G)*uint32(255-top.A))/255 + uint32(top.G)),
-		B: uint8((uint32(bottom.B)*uint32(255-top.A))/255 + uint32(top.B)),
+		R: uint8((uint32(bottom.R)*uint32(255-top.A) + uint32(top.R)*uint32(top.A)) / 255),
+		G: uint8((uint32(bottom.G)*uint32(255-top.A) + uint32(top.G)*uint32(top.A)) / 255),
+		B: uint8((uint32(bottom.B)*uint32(255-top.A) + uint32(top.B)*uint32(top.A)) / 255),
 		A: 255,
 	}
 }
